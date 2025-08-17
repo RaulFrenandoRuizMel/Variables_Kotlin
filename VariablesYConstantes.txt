@@ -1,0 +1,24 @@
+//variables Explicitas:
+var edad: Int = 30
+var precio: Double = 15.75
+var nombre: String = "Lucía"
+var inicial: Char = 'L'
+var disponible: Boolean = true
+
+//variables Implicitas:
+var edad: Int = 30
+var precio: Double = 15.75
+var nombre: String = "Lucía"
+var inicial: Char = 'L'
+var disponible: Boolean = true
+
+//Constantes Implicitas:
+
+val numeroEntero = 100      
+val numeroDecimal = 3.14    
+val letra = 'A'           
+val saludo = "Hola"        
+val activo = true 
+
+//Constantes Explicitas:
+     
