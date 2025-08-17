@@ -1,0 +1,60 @@
+fun main() {
+   val respuesta = validar_numero_de_entrada()
+  println("¡¡Gracias por jugar!!")
+}
+ 
+fun validar_numero_de_entrada(): Int {
+   val aleatorio = (1..5).random()
+   var intentos = 0
+   var respuesta_valida: Int? = null
+ 
+ 
+   while (intentos < 3) 
+   {
+      print("Por favor, introduce un número sin punto decimal: ")
+       val respuesta = readlnOrNull()
+ 
+       if (respuesta == null) 
+       {
+          println("Entrada vacía, intenta de nuevo.")
+           continue
+       }
+ 
+      respuesta_valida = respuesta.toIntOrNull()
+       if (respuesta_valida == null) 
+       {
+          println("Eso no es un número válido. Intenta de nuevo.")
+ 
+           continue
+       }
+ 
+       intentos++
+ 
+       if (respuesta_valida == aleatorio) 
+       {
+          println("¡En efecto! El número que estaba pensando era ${aleatorio}")
+          println("¡Lo lograste en el ${intentos}° intento(s)!")
+ 
+           break
+       } else 
+       {
+          println("Ese no es, intenta con otro. Te quedan ${3 - intentos} intento(s).")
+          if(respuesta_valida < aleatorio)
+           {
+              println("Estoy pensando en un numero mas grande")
+           }
+           else
+           {
+              println("Estoy pensando en un numero mas chico")
+           }
+       }
+   }
+ 
+   if (respuesta_valida != aleatorio) 
+   {
+      println("Lo siento, no lograste adivinar. El número era ${aleatorio}")
+   }
+ 
+   return respuesta_valida ?: 0
+}
+ 
