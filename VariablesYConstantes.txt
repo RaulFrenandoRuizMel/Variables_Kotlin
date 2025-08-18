@@ -21,4 +21,9 @@ val saludo = "Hola"
 val activo = true 
 
 //Constantes Explicitas:
-     
+
+val numeroEntero:Int =100;
+val numeroDecimal:Float = 3.14    
+val letra:Char = 'A'           
+val saludo:Sting = "Hola"        
+val activo:Boolean = true 
