@@ -1,0 +1,36 @@
+//Datos basicos sobre Jeagers de la pelicula Titanes del Pacifico
+
+class Jeager
+        (
+        val categoria: Int,
+        var nombre: String,
+        var piloto1: String,
+        var piloto2: String,
+        val pais_de_origen: String,
+        val Armamento: String,
+        ){
+        fun presentar_pilotos()
+            {
+                println("Los pilotos del Jeager: ${nombre}, categoria ${categoria} originario de ${pais_de_origen} son:")
+                println("${piloto1} y ${piloto2}");
+                println("Cuentan con Armamento de: ${Armamento}");
+                println("");
+            }
+        }
+
+fun main()
+{
+    val jeager_1= Jeager(3, "Gipsy Danger", "Raleigh Becket", "Mako Mori","Estados Unidos","Cañon de plasma")
+    val jeager_2= Jeager(1, "Cherno Alpha", "Aleksis Kaidonovsky", "Sasha Kaidonovsky","Rusia","Puños Tesla Z-14")
+    val jeager_3= Jeager(5, "Striker Eureka", "Herc Hansen", "Chuck Hansen","Autralia","Lanzador de Misiles Anti-Kaiju")
+    val jeager_4= Jeager(1, "Coyote Tango", "Tamsin Sevier", "Stacker Pentecost","Japon","Cañones de Mortero Balísticos")
+    val jeager_5= Jeager(1, "Tacit Ronnin", "Kaori Jessop", "Duc Jessop","Japon","Cuchillas Retráctiles en los Brazos")
+
+    
+    jeager_1.presentar_pilotos();
+    jeager_2.presentar_pilotos();
+    jeager_3.presentar_pilotos();
+    jeager_4.presentar_pilotos();
+    jeager_5.presentar_pilotos();
+
+}
