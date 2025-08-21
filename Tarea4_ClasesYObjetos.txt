@@ -1,3 +1,5 @@
+//Datos basicos sobre Jeagers de la pelicula Titanes del Pacifico
+
 class Jeager
         (
         val categoria: Int,
