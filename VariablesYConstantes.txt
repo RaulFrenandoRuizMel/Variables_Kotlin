@@ -6,11 +6,11 @@ var inicial: Char = 'L'
 var disponible: Boolean = true
 
 //variables Implicitas:
-var edad: Int = 30
-var precio: Double = 15.75
-var nombre: String = "Lucía"
-var inicial: Char = 'L'
-var disponible: Boolean = true
+var edad = 30
+var precio = 15.75
+var nombre = "Lucía"
+var inicial = 'L'
+var disponible = true
 
 //Constantes Implicitas:
 
