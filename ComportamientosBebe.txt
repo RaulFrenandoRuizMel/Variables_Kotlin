@@ -1,0 +1,152 @@
+enum class EstadosBebes{
+    despierto,
+    llorando,
+    dormido,
+    comiendo,
+    cagado_y_miado,
+    viendo_paw_patrol,
+    tieso,
+    tirando_putazos,
+    reprobando_el_semestre,
+    prime,
+    vibrando_alto,
+    sellando_la_hoonmoon
+}
+
+class Bebe(
+        var nombre: String,
+        var hambre: Int,
+        var pañal_lleno: Int,
+        var sueño: Int,
+        var enojo: Int,
+        var calificacion: Int,
+        var musica: String,
+        var estado: EstadosBebes = EstadosBebes.despierto,
+        ){
+        
+    fun alimentar(){
+        estado = EstadosBebes.comiendo
+    }
+    
+    fun pelear()
+    {
+        if (estado == EstadosBebes.tieso)
+        {
+            estado = EstadosBebes.tieso
+        }
+        else if(estado==EstadosBebes.despierto && enojo > 20)
+        {
+            enojo = 0;
+            estado = EstadosBebes.tirando_putazos; 
+        }
+    }
+    fun dormir(){
+        if((estado == EstadosBebes.despierto || estado == EstadosBebes.comiendo) && sueño > 49){
+            sueño = 0
+            estado = EstadosBebes.dormido
+        }
+    }
+    
+    fun despertar(){
+        if(estado == EstadosBebes.dormido){
+            estado = EstadosBebes.despierto
+        }
+    }
+    
+    fun despertar_con_agua(){
+        if(estado == EstadosBebes.dormido){
+            estado = EstadosBebes.tieso
+        }
+    }
+    
+    fun escuchando_musica()
+    {
+        if(estado == EstadosBebes.tieso && musica == "Angeles de la humanidad")
+        {
+            estado = EstadosBebes.vibrando_alto
+        }
+        if else(estado == EstadosBebes.despierto && musica == "Golden")
+        {
+            estado = EstadosBebes.sellando_la_hoonmoon   
+        }
+    }
+    fun actualizar_estado(){
+        when(estado){
+            EstadosBebes.despierto -> {
+                sueño += 5
+                hambre += 5
+                pañal_lleno += 3
+            }
+            
+            EstadosBebes.comiendo -> {
+                hambre -= 40
+            }
+            
+            else -> {
+                
+            }
+        }
+    }
+    
+    fun estudiar()
+    {
+        if(calificacion <= 70 || maestro =="Palacios")
+        {
+            estado = EstadosBebes.reprobando_el_semestre
+        }
+    }
+    
+    fun picar_con_un_palo(): String{
+        return estado_actual()
+    }
+    
+    fun estado_actual(): String{
+        when(estado){
+            EstadosBebes.despierto -> {
+                return "El bebe esta despierto"
+            }
+            
+            EstadosBebes.tieso -> {
+                return "Estoy muerto"
+            }
+            
+            EstadosBebes.dormido -> {
+                return "Esta dormidito"
+            }
+            
+            EstadosBebes.comiendo -> {
+                return "Estoy alimentadome para ser grande y fuerte"
+            }
+            EstadosBebes.vibrando_alto -> {
+                return "EN LOS FUEGOS DE LA BATALLA, EN EL YUNQUE DE LA GUERRA, VULKAN VIVE!!!"
+            }
+            EstadosBebes.sellando_la_hoonmoon ->{
+                return "WE ARE GOING UP, UP, UP ITS OUR MOMENT, YOU KNOW  TOGETHER WE'RE GLOWIN' GONNA BE, GONNA BE GOLDEN"
+            }
+            else -> {
+                return "No identifico el estado"
+            }
+        }
+    }
+}
+
+fun main(){
+    val JackieShieras = Bebe("Jackie Shieras", 50, 10, 70, 150, 69,"Golden")
+    
+    JackieShieras.actualizar_estado()
+    println("El estado del bebe es ${JackieShieras.estado_actual()}")
+    JackieShieras.dormir()
+    println("El estado del bebe es ${JackieShieras.estado_actual()}")
+    JackieShieras.despertar_con_agua()
+    println("El estado del bebe es ${JackieShieras.estado_actual()}")
+    JackieShieras.alimentar()
+    println("El estado del bebe es ${JackieShieras.estado_actual()}")
+    JackieShieras.pelear()
+    println("El estado del bebe es ${JackieShieras.estado_actual()}")
+    JackieShieras.calificacion()
+    println("El estado del bebe es ${JackieShieras.estado_actual()}")
+    JackieShieras.alimentar()
+    println("El estado del bebe es ${JackieShieras.estado_actual()}")
+}
+
+
