@@ -1,36 +1,139 @@
 //Datos basicos sobre Jeagers de la pelicula Titanes del Pacifico
 
 class Jeager
-        (
-        val categoria: Int,
-        var nombre: String,
-        var piloto1: String,
-        var piloto2: String,
-        val pais_de_origen: String,
-        val Armamento: String,
-        ){
-        fun presentar_pilotos()
-            {
-                println("Los pilotos del Jeager: ${nombre}, categoria ${categoria} originario de ${pais_de_origen} son:")
-                println("${piloto1} y ${piloto2}");
-                println("Cuentan con Armamento de: ${Armamento}");
-                println("");
-            }
-        }
+	(
+	    val categoria: Int,
+	    var nombre: String,
+	    var piloto1: String,
+	    var piloto2: String,
+	    val pais_de_origen: String,
+	    val Armamento: String,
+	) {
+	fun presentar_pilotos()
+	{
+		println("Los pilotos del Jeager: ${nombre}, categoria ${categoria} originario de ${pais_de_origen} son:")
+		println("${piloto1} y ${piloto2}");
+		println("Cuentan con Armamento de: ${Armamento}");
+		println("");
+	}
+}
+
+class Kaiju
+	(
+	    val categoria: Int,
+	    var nombre: String,
+	    val lugar: String,
+	    val Habilidad: String,
+	    val peso: Int,
+	    val tamaño: Int
+	) {
+	fun informacion_Kaiju()
+	{
+		println("El kaiju de categoria ${categoria}, de nombre ${nombre} ha llegado a ${lugar}, cuenta con la habilidad de: ${Habilidad}")
+		println("Peso: ${peso} toneladas")
+		println("Tamaño: ${tamaño} Metros")
+		println("");
+	}
+}
+
+class Shaterdomme
+	(
+	    val capacidad: Int,
+	    var ubicacion: String,
+	    var director: String,
+	) {
+	fun descripcion()
+	{
+		println("El Shaterdomme de ${ubicacion} a cargo de ${director} cuenta con capacidad de ${capacidad} Jeagers")
+		println("");
+	}
+}
+
+class Piloto
+	(
+	    val edad: Int,
+	    var nombre: String,
+	    var nacionalidad: String,
+	    var experiencia: String,
+	) {
+	fun Datos_pilotos()
+	{
+		println("nombre: ${nombre}")
+        println("edad: ${edad} años")
+        println("nacionalidad: ${nacionalidad}")
+        println("experiencia: ${experiencia} años")
+		println("");
+	}
+}
+
+class Batalla
+	(
+	    val duracion: Int,
+	    var lugar: String,
+	    var jeager_involucrado: String,
+	    var jeager_involucrado_2: String,
+	    var jeager_involucrado_3: String,
+	    var jeager_involucrado_4: String,
+	    var kaiju_involucrado: String,
+	    var kaiju_involucrado_2: String,
+	    var resultado: String,
+	){
+	fun Informe()
+	{
+		if(kaiju_involucrado_2 != "")
+		{
+    		println("La batalla sucedio en: ${lugar}, entre los Jeager: ${jeager_involucrado} y ${jeager_involucrado_2}, contra los Kaijua ${kaiju_involucrado} y ${kaiju_involucrado_2}")
+
+		}
+		else
+		{
+    		println("La batalla sucedio en: ${lugar}, entre los Jeager: ${jeager_involucrado} y ${jeager_involucrado_2}, contra el Kaiju ${kaiju_involucrado}")	
+    	}
+        println("duracion: ${duracion} horas")
+        println("resultado: ${resultado}")
+		println("");
+	}
+}
 
 fun main()
 {
-    val jeager_1= Jeager(3, "Gipsy Danger", "Raleigh Becket", "Mako Mori","Estados Unidos","Cañon de plasma")
+	val jeager_1= Jeager(3, "Gipsy Danger", "Raleigh Becket", "Mako Mori","Estados Unidos","Cañon de plasma")
     val jeager_2= Jeager(1, "Cherno Alpha", "Aleksis Kaidonovsky", "Sasha Kaidonovsky","Rusia","Puños Tesla Z-14")
     val jeager_3= Jeager(5, "Striker Eureka", "Herc Hansen", "Chuck Hansen","Autralia","Lanzador de Misiles Anti-Kaiju")
-    val jeager_4= Jeager(1, "Coyote Tango", "Tamsin Sevier", "Stacker Pentecost","Japon","Cañones de Mortero Balísticos")
-    val jeager_5= Jeager(1, "Tacit Ronnin", "Kaori Jessop", "Duc Jessop","Japon","Cuchillas Retráctiles en los Brazos")
+    val jeager_4= Jeager(1, "Coyote Tango", "Tamsin Sevier", "Stacker Pentecost","Japon","Cañones de Mortero BalC-sticos")
+    val jeager_5= Jeager(1, "Tacit Ronnin", "Kaori Jessop", "Duc Jessop","Japon","Cuchillas Retractiles en los Brazos")
+    
+    val Kaiju_1 = Kaiju(3, "Knifehead","Alaska", "Cabezon", 2700,96)
+    val Kaiju_2 = Kaiju(4, "Otachi", "Hong Kong", "Órgano oral capaz de expulsar chorros de ácido altamente corrosivo y tóxico y Capacidad Voladora", 8990 , 65)
+    val Kaiju_3 = Kaiju(4, "Leatherback", "Hong Kong", "Arma PEM Biologica", 2900 , 81)
+    val Kaiju_4 = Kaiju(5, "Slattern", "Brecha del Pacífico", "Trío de colas de triple corona y escamas de reptil coriáceas muy resistentes", 6750, 181)
 
     
-    jeager_1.presentar_pilotos();
-    jeager_2.presentar_pilotos();
-    jeager_3.presentar_pilotos();
-    jeager_4.presentar_pilotos();
-    jeager_5.presentar_pilotos();
+    val shaterdomme = Shaterdomme(40,"Taiwan", "Stacker Pentecost")
+    
+    val piloto = Piloto(27, "Raleigh Becket","Americano", "3")
+    
+    /*    val Hong_kong = Batalla(1,"Hong_kong","Cherno Alpha", "Crimson Typhoon", "Striker Eureka", "Gipsy Danger", "Leatherback",
+    "Otachi","Cherno Alpha y Crimson Typhoon destruidos, ambos Kaijus neutralizados por Gipsy Danger")*/
+    
+        val Hong_kong = Batalla(1,"Hong_kong","Cherno Alpha", "Crimson Typhoon", "Striker Eureka", "Gipsy Danger", "Leatherback",
+    "Otachi","")
 
-}
+    jeager_1.presentar_pilotos();
+	jeager_2.presentar_pilotos();
+	jeager_3.presentar_pilotos();
+	jeager_4.presentar_pilotos();
+	jeager_5.presentar_pilotos();
+	
+	Kaiju_1.informacion_Kaiju();
+	Kaiju_2.informacion_Kaiju();
+	Kaiju_3.informacion_Kaiju();
+	Kaiju_4.informacion_Kaiju();
+
+	
+	Hong_kong.resultado = "${Hong_kong.jeager_involucrado} y ${Hong_kong.jeager_involucrado_2} destruidos, pilotos Aleksis Kaidonovsky, Sasha Kaidonovsky, Cheung Wei, Jin Wei, Hu Wei fallecidos, piloto Herc Hansen herido, Kaijus ${Hong_kong.kaiju_involucrado} y ${Hong_kong.kaiju_involucrado_2} neutralizados por ${Hong_kong.jeager_involucrado_4}"
+	Hong_kong.Informe();
+
+    piloto.Datos_pilotos();
+	
+	shaterdomme.descripcion();
