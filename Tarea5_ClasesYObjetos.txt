@@ -56,7 +56,7 @@ class Piloto
 	    var nacionalidad: String,
 	    var experiencia: String,
 	) {
-	fun Datos_pilotos()
+	fun datos_pilotos()
 	{
 		println("nombre: ${nombre}")
         println("edad: ${edad} años")
