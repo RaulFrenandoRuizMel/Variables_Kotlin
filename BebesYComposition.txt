@@ -1,0 +1,501 @@
+interface Habilidad
+{
+    var nombre:String
+    var activo: Boolean
+    var descripcion: String?
+    
+    fun activar():Boolean
+    {
+        if(activo)
+        {
+            return false
+        }
+        else
+        {
+            activo = true
+            return true
+        }
+    }
+      
+    fun desactivar():Boolean
+    {
+        if(!activo)
+        {
+            return false
+        }
+        else
+        {
+            activo = false
+            return true
+        }
+    }
+}
+
+
+interface Habilidades{
+    var capacidades: MutableList<Habilidad> 
+    
+        fun activar_capacidad(nombre:String): Boolean
+        {
+            for (capacidad in capacidades)
+            {
+                if (capacidad.nombre == nombre)
+                {
+                    return capacidad.activar()
+                }
+            }
+            return false
+        }
+    fun agregar_capacidad(capacidad_nueva: Habilidad)
+    {
+        capacidades.add(capacidad_nueva)
+    }
+    fun descripcion():String
+    {
+        var lista_de_capacidades = "${capacidades.size}"
+        
+        for(capacidad in capacidades)
+        {
+            lista_de_capacidades = "${lista_de_capacidades}\n-${capacidad.nombre}, ${capacidad.descripcion}"
+        }
+        return lista_de_capacidades
+    }
+}
+
+class SuperPoder(
+    override var nombre: String,
+    override var activo: Boolean,
+    override var descripcion: String?
+    ): Habilidad{}
+    
+//Interface Mascota//////////////////////////////////////////////////
+
+interface Mascota {
+    var nombre: String
+    var activo: Boolean
+    var descripcion: String?
+    var especie: String?
+
+    fun activar(): Boolean {
+        if (activo) {
+            return false
+        } else {
+            activo = true
+            return true
+        }
+    }
+
+    fun desactivar(): Boolean {
+        if (!activo) {
+            return false
+        } else {
+            activo = false
+            return true
+        }
+    }
+}
+
+interface Mascotas {
+    var acompañantes: MutableList<Mascota>
+
+    fun activar_mascota(nombre: String): Boolean {
+        for (acompañante in acompañantes) {
+            if (acompañante.nombre == nombre) {
+                return acompañante.activar()
+            }
+        }
+        return false
+    }
+
+    fun agregar_mascota(nueva_mascota: Mascota) {
+        acompañantes.add(nueva_mascota)
+    }
+
+    fun descripcion_mascotas(): String {
+        var lista_de_acompañantes = "${acompañantes.size}"
+        for (acompañante in acompañantes) {
+            lista_de_acompañantes = "${acompañantes.size}\n-Nombre: ${acompañante.nombre}\n-Descripcion: ${acompañante.descripcion}\n-Especie: ${acompañante.especie}"
+        }
+        return lista_de_acompañantes
+    }
+}
+
+//Clase para dar valores a la mascota 
+class criatura(
+    override var nombre: String,
+    override var activo: Boolean = false,
+    override var descripcion: String?,
+    override var especie: String?
+) : Mascota {}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+enum class EstadosBebes {
+	despierto,
+	llorando,
+	dormido,
+	comiendo,
+	cagado_y_miado,
+	viendo_paw_patrol,
+	tieso,
+	//comportamientos agregados
+	tirando_putazos,
+	reprobando_el_semestre,
+	prime,
+	vibrando_alto,
+	sellando_la_hoonmoon,
+	adominacion_total,
+	licenciado_ingeniero
+}
+
+class Bebe(
+	    var nombre: String,
+	    var hambre: Int,
+	    var pañal_lleno: Int,
+	    var sueño: Int,
+	    var enojo: Int,
+	    var calificacion: Int,
+	    var musica: String,
+	    var tamaño_del_brazo :Int,
+	    var estado: EstadosBebes = EstadosBebes.despierto,
+	): Habilidades, Mascotas {
+	
+//Implementacion de la interfaz	1
+	    override var capacidades: MutableList<Habilidad> = mutableListOf()
+	    
+//Implementacion de la interfaz	2
+	    override var acompañantes: MutableList<Mascota> = mutableListOf()
+
+//comportamientos agregados
+	fun estetica() {
+		if(estado== EstadosBebes.tieso)
+		{
+			estado == EstadosBebes.tieso
+		}
+		else if(tamaño_del_brazo >= 45)
+		{
+			estado = EstadosBebes.prime
+		}
+	}
+
+	fun pelear()
+	{
+		if (estado == EstadosBebes.tieso || tamaño_del_brazo <=35)
+		{
+			estado = EstadosBebes.tieso
+		}
+		else if(enojo > 20)
+		{
+			enojo = 0;
+			estado = EstadosBebes.tirando_putazos;
+		}
+		/*else if(enojo>20 && tamaño_del_brazo <=35)
+		{
+		    enojo = 0;
+		    estado = EstadosBebes.tieso;
+		}*/
+	}
+
+	fun escuchando_musica()
+	{
+		if((estado == EstadosBebes.despierto || estado == EstadosBebes.dormido || estado == EstadosBebes.tieso || estado == EstadosBebes.reprobando_el_semestre) && musica == "Angeles de la humanidad")
+		{
+			estado = EstadosBebes.vibrando_alto
+		}
+		else if((estado == EstadosBebes.despierto || estado == EstadosBebes.dormido || estado == EstadosBebes.tieso) && musica == "Golden")
+		{
+			estado = EstadosBebes.despierto
+			         estado = EstadosBebes.sellando_la_hoonmoon
+		}
+		else if(nombre == "Ado" && musica == "Usseewa")
+		{
+		    estado = EstadosBebes.despierto
+            estado = EstadosBebes.adominacion_total
+		}
+	}
+
+	fun estudiar()
+	{
+		if(estado == EstadosBebes.tieso)
+		{
+			estado = EstadosBebes.tieso
+		}
+		else if(calificacion <= 69)
+		{
+			estado = EstadosBebes.reprobando_el_semestre
+		}
+		else if(calificacion >= 70)
+		{
+			estado = EstadosBebes.licenciado_ingeniero
+		}
+	}
+
+	fun cambio()
+	{
+		if(estado == EstadosBebes.tieso)
+		{
+			estado = EstadosBebes.tieso
+		}
+		else if(pañal_lleno <= 30)
+		{
+
+		}
+		else if(pañal_lleno >= 70)
+		{
+			estado = EstadosBebes.cagado_y_miado
+		}
+	}
+/*-----------------------------------------------------------------------------*/
+	fun alimentar() {
+		if(estado == EstadosBebes.tieso)
+		{
+			estado = EstadosBebes.tieso
+		}
+		else
+		{
+			estado = EstadosBebes.comiendo
+		}
+	}
+
+	fun dormir() {
+		if((estado == EstadosBebes.despierto || estado == EstadosBebes.comiendo) && sueño > 49) {
+			sueño = 0
+			         estado = EstadosBebes.dormido
+		}
+	}
+
+	fun despertar() {
+		if(estado == EstadosBebes.dormido) {
+			estado = EstadosBebes.despierto
+		}
+	}
+
+	fun despertar_con_agua() {
+		if(estado == EstadosBebes.dormido) {
+			estado = EstadosBebes.tieso
+		}
+	}
+
+	fun actualizar_estado() {
+		when(estado) {
+			EstadosBebes.despierto -> {
+				sueño += 5
+				hambre += 5
+				pañal_lleno += 3
+			}
+
+			EstadosBebes.comiendo -> {
+				hambre -= 40
+			}
+
+			else -> {
+
+				}
+			}
+	}
+
+	fun picar_con_un_palo(): String{
+		return estado_actual()
+	}
+
+	fun estado_actual(): String{
+		when(estado) {
+		//comportamientos agregados
+		/*-----------------------------------------------------------------------------*/
+			EstadosBebes.prime -> {
+				return "Ocho palabras furro de estetica miserable, 'ESTETICA', de la mas alta calidad"
+			}
+			EstadosBebes.vibrando_alto -> {
+				return "EN LOS FUEGOS DE LA BATALLA, EN EL YUNQUE DE LA GUERRA, VULKAN VIVE!!!"
+			}
+			EstadosBebes.adominacion_total -> {""
+				return "HAAA? USSEE USSEE USSEE WA, ANATA GA OMOU YORI KENKOU  DESU, ISSAI GASSAI BONYOU NA, ANATA JA WAKARANAI KAMO NE!!"
+			}
+			EstadosBebes.sellando_la_hoonmoon -> {
+				return "WE ARE GOING UP, UP, UP ITS OUR MOMENT, YOU KNOW  TOGETHER WE'RE GLOWIN' GONNA BE, GONNA BE GOLDEN"
+			}
+			EstadosBebes.tirando_putazos -> {
+				return "QUE SE ARMEN LOS PINCHES CHINGADAZOS!!"
+			}
+			EstadosBebes.reprobando_el_semestre -> {
+				return "El bebe mejor va a darse de baja y poner un puesto de pollos y carnitas"
+			}
+			EstadosBebes.licenciado_ingeniero -> {
+				return "El bebe se ah graduado y licenciado con completo exito de diseC1o, ahora no encuentra chamba de lo que estudio...mejor hubiera abierto un puesto de carnitas"
+			}
+			EstadosBebes.cagado_y_miado -> {
+				return "Al bebe se le esta desbordando el relleno"
+			}
+			EstadosBebes.llorando -> {
+				return "El bebe esta llorando porque no lo topa ni su madre"
+			}
+			EstadosBebes.despierto -> {
+				return "El bebe esta despierto"
+			}
+			EstadosBebes.tieso -> {
+				return "Estoy muerto"
+			}
+			EstadosBebes.dormido -> {
+				return "Esta dormidito"
+			}
+			EstadosBebes.comiendo -> {
+				return "Estoy alimentadome para ser grande y fuerte"
+			}
+			else -> {
+				    return "No identifico el estado"
+				}
+			}
+	}
+}
+
+fun main() {
+	/* val JackieShieras = Bebe("Jackie Shieras", 50, 10, 70, 150, 69,"Angeles de la humanidad",55 )
+	 JackieShieras.actualizar_estado()
+	 println("El estado del bebe es ${JackieShieras.estado_actual()}")
+	 JackieShieras.dormir()
+	 println("El estado del bebe es ${JackieShieras.estado_actual()}")
+	 JackieShieras.despertar_con_agua()
+	 println("El estado del bebe es ${JackieShieras.estado_actual()}")
+	 JackieShieras.alimentar()
+	 println("El estado del bebe es ${JackieShieras.estado_actual()}")
+	 JackieShieras.escuchando_musica()
+	 println("El bebe esta escuchando '${JackieShieras.musica}' estado del bebe es ${JackieShieras.estado_actual()}")*/
+
+	val bebeToji = Bebe("Toji", 100, 100, 100, 150, 79,"Golden", 50)
+	val bebeMiku = Bebe("Miku", 30, 20, 40, 150, 55,"Angeles de la humanidad", 30)
+	val bebeAdo = Bebe("Ado", 0, 0, 0, 150, 55,"Usseewa", 60)
+
+//Agregar superpoderes a los bebes
+    
+    val poder = SuperPoder("Rayos Laser", true, "Una entidad con rayos laser")
+    val poder_2 = SuperPoder("Volar", true, "La habilidad de volar")
+    val poder_3 = SuperPoder("SuperFuerza", true, "La capacidad de tener mucha fuerza")
+    val poder_4 = SuperPoder("Sentidos Aumentados", true, "Todos los sentidos de un ser humano aumentados a niveles sobrenaturales")
+    val poder_5 = SuperPoder("Factor Regenerativo", true, "Sistema inmuninario y Regenerativo sobrehumanos que curan enfermedades y lesiones en periodos mas cortos de tiempo")
+    val poder_6 = SuperPoder("Grito Armonico", true, "Amplificacion de los sonidos vocales que emite el usuario en frecuencias hipnotizantes y encantadoras para todo aquel que las escuche")
+    val poder_7 = SuperPoder("Sintetizador", true, "La voz del usuario obtiene un efecto sintetizador de manera natural sin la necedidad equipos de sonidos ni efectos especiales")
+    
+//Agregar Mascotas a los huercos
+    
+    val mascota_1=criatura("Gusano",true, "Una criatura con forma de gusano que puede guardar todo tipo de cosas en su interior", "Maldicion")
+    val mascota_2 = criatura("Godzilla",true,"Titan del periodo Permico con capacidad de produccion de energia nuclear natural, denominado como depredador Apex y Alfa de su era", "Titanus Gojira")
+    val mascota_3 = criatura("Yo Merengues",true, "Estudiante Universitario que se metio a Diseño Digital sin saber diseñar ni programar, pero que le gusta mucho como cantan las gritonas","Humano...segun los Registros")
+    
+////////////////////////////////////////////////////////////////////////////
+
+//1er Bebe: bebeToji
+    bebeToji.actualizar_estado()
+    println("-El estado del bebe es ${bebeToji.estado_actual()}")
+    bebeToji.dormir()
+    println("-El estado del bebe es ${bebeToji.estado_actual()}")
+    bebeToji.escuchando_musica()
+    println("-El bebe esta escuchando '${bebeToji.musica}' estado del bebe es ${bebeToji.estado_actual()}")
+    bebeToji.alimentar()
+    println("-El estado del bebe es ${bebeToji.estado_actual()}")
+    bebeToji.estetica()
+    println("-El bebe tiene brazo de '${bebeToji.tamaño_del_brazo}' estado del bebe es ${bebeToji.estado_actual()}")
+    bebeToji.pelear()
+    println("-Al '${bebeToji.nombre}' le robaron las de 50kg en el gym, el bebeToji va a a entrarle a los golpes... ${bebeToji.estado_actual()}")
+    bebeToji.estudiar()
+    println("-El '${bebeToji.nombre}' tiene '${bebeToji.calificacion}' en calificacion final de todas las materias... ${bebeToji.estado_actual()}")
+    bebeToji.cambio()
+    println("-El '${bebeToji.nombre}' tiene '${bebeToji.pañal_lleno}'% de su pañal lleno... ${bebeToji.estado_actual()}")
+    println("")
+    println("")
+    //Activar Poderes
+    bebeToji.agregar_capacidad(poder_3)
+    bebeToji.agregar_capacidad(poder_4)
+    
+    bebeToji.activar_capacidad(poder.nombre)
+    
+    println("Los poderes del bebe Toji son ${bebeToji.descripcion()}")
+    println("")
+    //Activar Mascotas
+    bebeToji.agregar_mascota(mascota_1)
+
+    bebeToji.activar_mascota("Gusano")
+    
+    println("La mascota del bebe Toji es: ${bebeToji.descripcion_mascotas()}")
+    println("")
+    
+////////////////////////////////////////////////////////////////////////////
+
+//2do Bebe: bebeMiku
+    bebeMiku.actualizar_estado()
+    println("-El estado del bebe es ${bebeMiku.estado_actual()}")
+    bebeMiku.dormir()
+    println("-El bebe tiene ${bebeMiku.sueño}% de sueño, estado del bebe es ${bebeMiku.estado_actual()}")
+    bebeMiku.alimentar()
+    println("-El estado del bebe es ${bebeMiku.estado_actual()}")
+    bebeMiku.estetica()
+    println("-El bebe tiene brazo de '${bebeMiku.tamaño_del_brazo}' estado del bebe es ${bebeMiku.estado_actual()}")
+    bebeMiku.pelear()
+    println("-A '${bebeMiku.nombre}' le robaron las de 50kg en el gym, el bebe va a a entrarle a los golpes... ${bebeMiku.estado_actual()}")
+    bebeMiku.estudiar()
+    println("-'${bebeMiku.nombre}' tiene '${bebeMiku.calificacion}' en calificacion final de todas las materias... ${bebeMiku.estado_actual()}")
+    bebeMiku.cambio()
+    println("-'${bebeMiku.nombre}' tiene '${bebeMiku.pañal_lleno}'% de su pañal... ${bebeMiku.estado_actual()}")
+    bebeMiku.escuchando_musica()
+    println("-El bebe '${bebeMiku.nombre}' esta escuchando '${bebeMiku.musica}' El Bebe ah regresado a la vida porque.... ${bebeMiku.estado_actual()}")
+    println("")
+    println("")
+
+    //Activar Poderes
+    bebeMiku.agregar_capacidad(poder_5)
+    bebeMiku.agregar_capacidad(poder_7)
+    
+    bebeMiku.activar_capacidad(poder.nombre)
+    
+    println("Los poderes de la bebe Miku son ${bebeMiku.descripcion()}")
+    println("")
+    //Activar Mascotas
+    bebeMiku.agregar_mascota(mascota_2)
+
+    bebeMiku.activar_mascota("Godzilla")
+    
+    println("La mascota de la bebe Miku es: ${bebeMiku.descripcion_mascotas()}")
+    println("")
+    
+////////////////////////////////////////////////////////////////////////////
+
+//3er Bebe: bebeAdo
+    bebeAdo.actualizar_estado()
+    println("-El estado del bebe es ${bebeAdo.estado_actual()}")
+    bebeAdo.dormir()
+    println("-El bebe tiene ${bebeAdo.sueño}% de sueño, estado del bebe es ${bebeAdo.estado_actual()}")
+    bebeAdo.alimentar()
+    println("-El estado del bebe es ${bebeAdo.estado_actual()}")
+    bebeAdo.estetica()
+    println("-El bebe tiene brazo de '${bebeAdo.tamaño_del_brazo}' estado del bebe es ${bebeAdo.estado_actual()}")
+    bebeAdo.pelear()
+    println("-A '${bebeAdo.nombre}' le robaron las de 50kg en el gym, el bebe va a a entrarle a los golpes... ${bebeAdo.estado_actual()}")
+    bebeAdo.estudiar()
+    println("-'${bebeAdo.nombre}' tiene '${bebeAdo.calificacion}' en calificacion final de todas las materias... ${bebeAdo.estado_actual()}")
+    bebeAdo.cambio()
+    println("-'${bebeAdo.nombre}' tiene '${bebeAdo.pañal_lleno}'% de su pañal... ${bebeAdo.estado_actual()}")
+    bebeAdo.escuchando_musica()
+    println("-El bebe '${bebeAdo.nombre}' esta escuchando '${bebeAdo.musica}' El Bebe ah recuperdao las ganas de vivir porque.... ${bebeAdo.estado_actual()}")
+    println("")
+    println("")
+
+    //Activar Poderes
+    bebeAdo.agregar_capacidad(poder_5)
+    bebeAdo.agregar_capacidad(poder_6)
+    
+    bebeAdo.activar_capacidad(poder.nombre)
+    
+    println("Los poderes de la bebe Ado son ${bebeAdo.descripcion()}")
+    println("")
+    //Activar Mascotas
+    bebeAdo.agregar_mascota(mascota_3)
+
+    bebeAdo.activar_mascota("Yo Merengues")
+    
+    println("La mascota de la bebe Ado es: ${bebeAdo.descripcion_mascotas()}")
+    println("")
+    
+}
+
+
+
+
