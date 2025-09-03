@@ -76,19 +76,25 @@ interface Mascota {
     var descripcion: String?
     var especie: String?
 
-    fun activar(): Boolean {
-        if (activo) {
+    fun activar(): Boolean 
+{
+        if (activo) 
+	{
             return false
-        } else {
+        } else 
+	{
             activo = true
             return true
         }
     }
 
-    fun desactivar(): Boolean {
-        if (!activo) {
+    fun desactivar(): Boolean 
+	{
+        if (!activo) 
+	{
             return false
-        } else {
+        } else 
+	{
             activo = false
             return true
         }
@@ -98,22 +104,28 @@ interface Mascota {
 interface Mascotas {
     var acompañantes: MutableList<Mascota>
 
-    fun activar_mascota(nombre: String): Boolean {
-        for (acompañante in acompañantes) {
-            if (acompañante.nombre == nombre) {
+    fun activar_mascota(nombre: String): Boolean 
+{
+        for (acompañante in acompañantes) 
+	{
+            if (acompañante.nombre == nombre) 
+		{
                 return acompañante.activar()
-            }
+            	}
         }
         return false
     }
 
-    fun agregar_mascota(nueva_mascota: Mascota) {
+    fun agregar_mascota(nueva_mascota: Mascota) 
+{
         acompañantes.add(nueva_mascota)
     }
 
-    fun descripcion_mascotas(): String {
+    fun descripcion_mascotas(): String 
+{
         var lista_de_acompañantes = "${acompañantes.size}"
-        for (acompañante in acompañantes) {
+        for (acompañante in acompañantes) 
+	{
             lista_de_acompañantes = "${acompañantes.size}\n-Nombre: ${acompañante.nombre}\n-Descripcion: ${acompañante.descripcion}\n-Especie: ${acompañante.especie}"
         }
         return lista_de_acompañantes
